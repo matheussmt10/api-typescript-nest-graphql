@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Appointment {
+  id: ID!
+  startAt: DateTime!
+  endAt: DateTime!
+  customer: Customer!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Customer {
+  id: ID!
+  name: String
+  email: String
+  appointments: [Appointment!]!
+}
+
+type Query {
+  customers: [Customer!]!
+  appointments: [Appointment!]!
+}
+
+type Mutation {
+  createCustomer(data: CreateCustomerInput!): Customer!
+  createAppointment(data: CreateAppointmentInput!): Appointment!
+}
+
+input CreateCustomerInput {
+  name: String!
+  email: String!
+}
+
+input CreateAppointmentInput {
+  customerId: String!
+  startAt: DateTime!
+  endAt: DateTime!
+}
